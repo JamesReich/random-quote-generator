@@ -22,6 +22,7 @@ h1 {
 #quote-block {
 
 
+
     display: block;
     align-content: center;
     justify-content: center;
@@ -33,6 +34,7 @@ h1 {
     background-color: rgba(0, 0, 0, 0.275);
     border-left: 10px solid rgba(0, 0, 0, 0.511);
     border-radius: 5px;
+    max-width: 1000px;
 
 }
 
@@ -68,6 +70,7 @@ h1 {
     margin: 0 auto;
     margin-top: 50px;
     width: 75%;
+    max-width: 1000px;
 }
 
 button {
@@ -88,5 +91,43 @@ button {
 button:hover {
 
     background-color: rgba(0, 0, 0, 0.873);
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    #quote-block {
+
+        width: 100%;
+        padding: 10px;
+    }
+
+    #top-wrapper {
+
+        font-size: 25px;
+
+    }
+
+    #middle-wrapper {
+
+        font-size: 15px;
+
+    }
+
+    #source {
+
+        font-size: 15px;
+
+    }
+
+    #button-wrapper {
+
+
+
+        width: 100%;
+        padding: 10px;
+
+    }
 
 }

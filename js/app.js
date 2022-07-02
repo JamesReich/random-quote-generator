@@ -56,14 +56,25 @@ const quotes = [
 
 ];
 
-/***
- * `getRandomQuote` function
-***/
+
+/**
+ * Default Quote
+ */
 let rQuote = document.getElementById('quote');
 let rAuthor = document.getElementById('author');
 let rSource = document.getElementById('source');
 let rDate = document.getElementById('date');
 let rTag = document.getElementById('tag');
+
+rQuote.innerHTML = quotes[0].quote
+rAuthor.innerHTML = ` -${quotes[0].author}`;
+rSource.innerHTML = `, ${quotes[0].source.italics()}`;
+rDate.innerHTML = quotes[0].date;
+rTag.innerHTML = `Tag: ${quotes[0].tag}`;
+
+/***
+ * `getRandomQuote` function
+***/
 
 function getRandomQuote() {
 

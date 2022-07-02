@@ -1,12 +1,3 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
-
-// For assistance: 
-// Check the "Project Resources" section of the project instructions
-// Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
 /*** 
  * `quotes` array 
 ***/
@@ -78,31 +69,9 @@ function getRandomQuote() {
 
     let random = Math.floor(Math.random() * quotes.length);
 
-    let quote = quotes[random].quote;
-    let author = quotes[random].author;
-    let source = quotes[random].source;
-    let date = quotes[random].date;
-    let tag = quotes[random].tag;
-
-    rQuote.innerHTML = quote;
-    rAuthor.innerHTML = ` -${author}`;
-    rSource.innerHTML = `, ${source.italics()}`;
-    rDate.innerHTML = date;
-    rTag.innerHTML = `Tag: ${tag}`;
-
-    if (quotes[random].date == false) {
-
-        rDate.innerHTML = '';
-
-    }
-    if (quotes[random].source == false) {
-
-        rSource.innerHTML = '';
-
-    }
+    return quotes[random];
 
 }
-
 
 
 /***
@@ -110,14 +79,63 @@ function getRandomQuote() {
 ***/
 function printQuote() {
 
-    getRandomQuote();
+    let random = getRandomQuote();
+
+    let quote = random.quote;
+    let author = random.author;
+    let source = random.source;
+    let date = random.date;
+    let tag = random.tag;
+
+    rQuote.innerHTML = quote;
+    rAuthor.innerHTML = ` -${author}`;
+    rSource.innerHTML = `, ${source.italics()}`;
+    rDate.innerHTML = date;
+    rTag.innerHTML = `Tag: ${tag}`;
+
+    if (random.date == false) {
+
+        rDate.innerHTML = '';
+
+    }
+    if (random.source == false) {
+
+        rSource.innerHTML = '';
+
+    }
 
 }
 
+/**
+ * Gets a random RGB value
+ */
+function randomBackground() {
 
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    let bgColor = "rgb(" + r + "," + g + "," + b + ")";
 
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+    document.body.style.background = bgColor;
+
+}
+
+/**
+ * Changes quote and bg color every 5 seconds
+ */
+setInterval(() => {
+
+    randomBackground();
+    printQuote();
+
+}, 5000);
+
+
+
+document.getElementById('load-quote').addEventListener("click", () => {
+
+    randomBackground();
+    printQuote();
+
+});
+

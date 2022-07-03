@@ -8,7 +8,6 @@ const quotes = [
         quote: '"The journey of a thousand miles begins with one step."',
         author: 'Lao Tzu',
         source: 'Chapter 64 of the Dao De Jing',
-        date: false,
         tag: 'philosophical'
     },
     {
@@ -22,35 +21,28 @@ const quotes = [
         quote: '“My mother always used to say: The older you get, the better you get, unless you are a banana.”',
         author: 'Rose (Betty White)',
         source: 'The Golden Girls',
-        date: false,
         tag: 'humour'
     },
     {
         quote: '“Clothes make the man. Naked people have little or no influence in society.”',
         author: 'Mark Twain',
-        source: false,
-        date: false,
         tag: 'humour'
     },
     {
         quote: '“I am not superstitious, but I am a little stitious.”',
         author: 'Michael Scott (Steve Carrell)',
         source: 'The Office',
-        date: false,
         tag: 'humour'
     },
     {
         quote: '"Things change. And friends leave. Life does not stop for anybody."',
         author: 'Stephen Chbosky',
         source: 'The Perks of Being a Wallflower',
-        date: false,
         tag: 'sad'
     },
     {
         quote: '"Tears come from the heart and not from the brain."',
         author: 'Leonardo da Vinci',
-        source: false,
-        date: false,
         tag: 'sad'
     },
 
@@ -98,20 +90,30 @@ function printQuote() {
     let date = random.date;
     let tag = random.tag;
 
-    rQuote.innerHTML = quote;
-    rAuthor.innerHTML = ` -${author}`;
-    rSource.innerHTML = `, ${source.italics()}`;
-    rDate.innerHTML = date;
-    rTag.innerHTML = `Tag: ${tag}`;
 
-    if (random.date == false) {
+    if (quote) {
 
-        rDate.innerHTML = '';
+        rQuote.innerHTML = quote;
 
     }
-    if (random.source == false) {
+    if (author) {
 
-        rSource.innerHTML = '';
+        rAuthor.innerHTML = ` -${author}`;
+
+    }
+    if (source) {
+
+        rSource.innerHTML = `, ${source.italics()}`;
+
+    }
+    if (date) {
+
+        rDate.innerHTML = date;
+
+    }
+    if (tag) {
+
+        rTag.innerHTML = `Tag: ${tag}`;
 
     }
 

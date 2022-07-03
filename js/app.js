@@ -8,13 +8,14 @@ const quotes = [
         quote: '"The journey of a thousand miles begins with one step."',
         author: 'Lao Tzu',
         source: 'Chapter 64 of the Dao De Jing',
+        citation: 'https://en.wikipedia.org/wiki/A_journey_of_a_thousand_miles_begins_with_a_single_step',
         tag: 'philosophical'
     },
     {
         quote: '"Life is what happens when you are busy making other plans."',
         author: 'John Lennon',
         source: 'lyric from “Beautiful Boy”',
-        date: '11 April 1981',
+        year: '1981',
         tag: 'philosophical'
     },
     {
@@ -26,6 +27,7 @@ const quotes = [
     {
         quote: '“Clothes make the man. Naked people have little or no influence in society.”',
         author: 'Mark Twain',
+        source: 'More Maxims of Mark',
         tag: 'humour'
     },
     {
@@ -43,25 +45,12 @@ const quotes = [
     {
         quote: '"Tears come from the heart and not from the brain."',
         author: 'Leonardo da Vinci',
+        source: 'The Notebooks of Leonardo Da Vinci',
         tag: 'sad'
     },
 
 ];
 
-
-/**
- * Default Quote
- */
-let rQuote = document.getElementById('quote');
-let rAuthor = document.getElementById('author');
-let rSource = document.getElementById('source');
-let rDate = document.getElementById('date');
-let rTag = document.getElementById('tag');
-
-rQuote.innerHTML = quotes[0].quote
-rAuthor.innerHTML = ` -${quotes[0].author}`;
-rSource.innerHTML = `, ${quotes[0].source.italics()}`;
-rTag.innerHTML = `Tag: ${quotes[0].tag}`;
 
 /***
  * `getRandomQuote` function
@@ -82,16 +71,43 @@ function getRandomQuote() {
 function printQuote() {
 
     let random = getRandomQuote();
-
+    let quoteBlock = document.getElementById('quote-block');
     let quote = random.quote;
     let author = random.author;
     let source = random.source;
-    let date = random.date;
+    let year = random.year;
     let tag = random.tag;
+    let citation = random.citation;
+
+    let quoteHTML = `
+            <div id="top-wrapper">
+                <p id="quote">${quote}</p>
+            </div>
+            <div id="middle-wrapper">
+                <p id="author"> -${author}</p>
+                <p id="source">, ${source.italics()}</p>
+                <p id="year">${year}</p>
+            </div>
+            <div id="tag-wrapper">
+                <p id="tag">Tag: ${tag}</p>
+                <a id="citation" href="${citation}">Citation</a>
+            </div>
+
+    `;
+
+    quoteBlock.innerHTML = quoteHTML;
+
+    let rQuote = document.getElementById('quote');
+    let rAuthor = document.getElementById('author');
+    let rSource = document.getElementById('source');
+    let rYear = document.getElementById('year');
+    let rTag = document.getElementById('tag');
+    let rCitation = document.getElementById('citation');
+
 
     if (quote) {
 
-        rQuote.innerHTML = quote;
+        rQuote.innerHTML = `${quote}`;
 
     } else {
 
@@ -116,13 +132,13 @@ function printQuote() {
         rSource.innerHTML = '';
 
     }
-    if (date) {
+    if (year) {
 
-        rDate.innerHTML = date;
+        rYear.innerHTML = year;
 
     } else {
 
-        rDate.innerHTML = '';
+        rYear.innerHTML = '';
 
     }
     if (tag) {
@@ -132,6 +148,15 @@ function printQuote() {
     } else {
 
         rTag.innerHTML = '';
+
+    }
+    if (citation) {
+
+        rCitation.innerHTML = `<a id="citation" href="${citation}">Citation: ${citation}</a>`;
+
+    } else {
+
+        rCitation.innerHTML = '';
 
     }
 
@@ -151,6 +176,7 @@ function randomBackground() {
 
 }
 
+printQuote();
 /**
  * Changes quote and bg color every 5 seconds
  */
@@ -159,7 +185,7 @@ setInterval(() => {
     randomBackground();
     printQuote();
 
-}, 5000);
+}, 10000);
 
 
 

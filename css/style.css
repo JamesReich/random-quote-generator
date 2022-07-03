@@ -61,6 +61,20 @@ h1 {
 
 }
 
+#citation {
+
+    color: white;
+    text-decoration: none;
+
+}
+
+#citation:hover {
+
+    color: rgba(255, 255, 255, 0.59);
+    text-decoration: underline;
+
+}
+
 #button-wrapper {
 
 

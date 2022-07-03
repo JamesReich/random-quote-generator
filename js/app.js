@@ -61,7 +61,6 @@ let rTag = document.getElementById('tag');
 rQuote.innerHTML = quotes[0].quote
 rAuthor.innerHTML = ` -${quotes[0].author}`;
 rSource.innerHTML = `, ${quotes[0].source.italics()}`;
-rDate.innerHTML = quotes[0].date;
 rTag.innerHTML = `Tag: ${quotes[0].tag}`;
 
 /***
@@ -94,25 +93,45 @@ function printQuote() {
 
         rQuote.innerHTML = quote;
 
+    } else {
+
+        rQuote.innerHTML = '';
+
     }
     if (author) {
 
         rAuthor.innerHTML = ` -${author}`;
+
+    } else {
+
+        rAuthor.innerHTML = '';
 
     }
     if (source) {
 
         rSource.innerHTML = `, ${source.italics()}`;
 
+    } else {
+
+        rSource.innerHTML = '';
+
     }
     if (date) {
 
         rDate.innerHTML = date;
 
+    } else {
+
+        rDate.innerHTML = '';
+
     }
     if (tag) {
 
         rTag.innerHTML = `Tag: ${tag}`;
+
+    } else {
+
+        rTag.innerHTML = '';
 
     }
 

@@ -90,7 +90,6 @@ function printQuote() {
     let date = random.date;
     let tag = random.tag;
 
-
     if (quote) {
 
         rQuote.innerHTML = quote;

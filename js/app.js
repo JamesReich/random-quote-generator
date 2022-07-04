@@ -58,6 +58,9 @@ const quotes = [
 
 function getRandomQuote() {
 
+    /**
+     * Random number between 0 and the ammount of quotes
+     */
     let random = Math.floor(Math.random() * quotes.length);
 
     return quotes[random];
@@ -72,94 +75,35 @@ function printQuote() {
 
     let random = getRandomQuote();
     let quoteBlock = document.getElementById('quote-block');
-    let quote = random.quote;
-    let author = random.author;
-    let source = random.source;
-    let year = random.year;
-    let tag = random.tag;
-    let citation = random.citation;
 
-    let quoteHTML = `
-            <div id="top-wrapper">
-                <p id="quote">${quote}</p>
-            </div>
-            <div id="middle-wrapper">
-                <p id="author"> -${author}</p>
-                <p id="source">, ${source.italics()}</p>
-                <p id="year">${year}</p>
-            </div>
-            <div id="tag-wrapper">
-                <p id="tag">Tag: ${tag}</p>
-                <a id="citation" href="${citation}">Citation</a>
-            </div>
+    /**
+     * Building the HTML to insert into the quote-block
+     */
+    let quoteHTML = `<div id="top-wrapper">`;
+    quoteHTML += `<p id="quote">${random.quote}</p></div>`;
+    quoteHTML += `<div id="middle-wrapper">`;
+    quoteHTML += `<p id="author"> -${random.author}</p>`;
+    quoteHTML += ` <p id="source">, ${random.source.italics()}</p>`
+    if (random.year) {
 
-    `;
+        quoteHTML += `<p id="year">${random.year}</p>`;
 
+    }
+    quoteHTML += `</div>`;
+    quoteHTML += `<div id="tag-wrapper">`;
+    quoteHTML += `<p id="tag">Tag: ${random.tag}</p>`;
+    if (random.citation) {
+
+        quoteHTML += `<a id="citation" href="${random.citation}">Citation</a>`;
+
+    }
+    quoteHTML += `</div>`;
+
+    /**
+     * Declaring that the HTML from the code above is now the HTML
+     * inside of the quote-block
+     */
     quoteBlock.innerHTML = quoteHTML;
-
-    let rQuote = document.getElementById('quote');
-    let rAuthor = document.getElementById('author');
-    let rSource = document.getElementById('source');
-    let rYear = document.getElementById('year');
-    let rTag = document.getElementById('tag');
-    let rCitation = document.getElementById('citation');
-
-
-    if (quote) {
-
-        rQuote.innerHTML = `${quote}`;
-
-    } else {
-
-        rQuote.innerHTML = '';
-
-    }
-    if (author) {
-
-        rAuthor.innerHTML = ` -${author}`;
-
-    } else {
-
-        rAuthor.innerHTML = '';
-
-    }
-    if (source) {
-
-        rSource.innerHTML = `, ${source.italics()}`;
-
-    } else {
-
-        rSource.innerHTML = '';
-
-    }
-    if (year) {
-
-        rYear.innerHTML = year;
-
-    } else {
-
-        rYear.innerHTML = '';
-
-    }
-    if (tag) {
-
-        rTag.innerHTML = `Tag: ${tag}`;
-
-    } else {
-
-        rTag.innerHTML = '';
-
-    }
-    if (citation) {
-
-        rCitation.innerHTML = `<a id="citation" href="${citation}">Citation: ${citation}</a>`;
-
-    } else {
-
-        rCitation.innerHTML = '';
-
-    }
-
 }
 
 /**
@@ -167,20 +111,26 @@ function printQuote() {
  */
 function randomBackground() {
 
+    /**
+     * Random number between 1 and 256 for each r, g, b value, then assigning that to an rgb value to get our random color
+     */
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
     let bgColor = "rgb(" + r + "," + g + "," + b + ")";
 
+    /**
+     * Assigning that random color to the background color
+     */
     document.body.style.background = bgColor;
 
 }
 
 printQuote();
 /**
- * Changes quote and bg color every 5 seconds
+ * Changes quote and bg color every 10 seconds
  */
-setInterval(() => {
+let quoteTimer = setInterval(() => {
 
     randomBackground();
     printQuote();
@@ -191,8 +141,10 @@ setInterval(() => {
 
 document.getElementById('load-quote').addEventListener("click", () => {
 
+
     randomBackground();
     printQuote();
+
 
 });
 
